@@ -4,10 +4,10 @@ export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
     register(dto: RegisterDto): Promise<{
-        id: string;
         email: string;
         username: string;
         password: string | null;
+        id: string;
         avatar: string | null;
         createdAt: Date;
     }>;

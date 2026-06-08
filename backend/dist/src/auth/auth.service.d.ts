@@ -4,10 +4,10 @@ export declare class AuthService {
     private prisma;
     constructor(prisma: PrismaService);
     UserRegistration(dto: RegisterDto): Promise<{
-        id: string;
         email: string;
         username: string;
         password: string | null;
+        id: string;
         avatar: string | null;
         createdAt: Date;
     }>;
