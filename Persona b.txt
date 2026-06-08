@@ -3,45 +3,47 @@
 📦 Mòdul 1.1: Instal·lació de les "eines" (Terminal)
 Abans de programar, necessites descarregar les llibreries que faran la feina bruta (encriptar i validar dades).
 
-[ ] 1.1.1: Obre la terminal, entra a la carpeta backend/.
-[ ] 1.1.2: Executa npm install bcrypt (per encriptar contrasenyes).
-[ ] 1.1.3: Executa npm install --save-dev @types/bcrypt (perquè TypeScript entengui bcrypt).
-[ ] 1.1.4: Executa npm install --save class-validator class-transformer (perquè NestJS pugui comprovar si els camps de text estan ben escrits).
+[x] 1.1.1: Obre la terminal, entra a la carpeta backend/.
+[x] 1.1.2: Executa npm install bcrypt (per encriptar contrasenyes).
+[x] 1.1.3: Executa npm install --save-dev @types/bcrypt (perquè TypeScript entengui bcrypt).
+[x] 1.1.4: Executa npm install --save class-validator class-transformer (perquè NestJS pugui comprovar si els camps de text estan ben escrits).
 
 ⚙️ Mòdul 1.2: Activació de la seguretat global
 Hem de dir-li a NestJS que utilitzi aquestes llibreries de validació a totes les rutes.
 
-[ ] 1.2.1: Obre el fitxer src/main.ts.
-[ ] 1.2.2: Importa el ValidationPipe a la part superior del fitxer:
-[ ] 1.2.3: Afegeix la línia app.useGlobalPipes(new ValidationPipe()); just abans del await app.listen(...).
+[x] 1.2.1: Obre el fitxer src/main.ts.
+[x] 1.2.2: Importa el ValidationPipe a la part superior del fitxer:
+[x] 1.2.3: Afegeix la línia app.useGlobalPipes(new ValidationPipe()); just abans del await app.listen(...).
+
 
 📝 Mòdul 1.3: Definició del contracte d'entrada (El DTO)
 Crearem el "motlle" que defineix quines dades demanem al Frontend i quines regles han de complir.
 
-[ ] 1.3.1: Crea la carpeta si no existeix: src/auth/dto/.
-[ ] 1.3.2: Crea el fitxer register.dto.ts dins d'aquesta carpeta.
-[ ] 1.3.3: Escriu la classe RegisterDto amb tres propietats basades en el model de la Polina:
+[x] 1.3.1: Crea la carpeta si no existeix: src/auth/dto/.
+[x] 1.3.2: Crea el fitxer register.dto.ts dins d'aquesta carpeta.
+[x] 1.3.3: Escriu la classe RegisterDto amb tres propietats basades en el model de la Polina:
 
 🧠 Mòdul 1.4: Programació del "Cervell" (src/auth/auth.service.ts)
 Aquí farem servir el teu PrismaService per parlar amb SQL i bcrypt per encriptar.
 
-[ ] 1.4.1: Importa el PrismaService i RegisterDto al fitxer.
-[ ] 1.4.2: Injecta el PrismaService al constructor de la classe AuthService perquè NestJS te'l doni connectat:
-[ ] 1.4.3: Crea la funció asíncrona: async register(dto: RegisterDto).
-[ ] 1.4.4: [Fase de consulta] Fes servir Prisma per buscar si el correu o l'usuari ja existeixen a la base de dades utilitzant this.prisma.user.findFirst.
-[ ] 1.4.5: Si existeix, llança un error de conflicte (throw new ConflictException(...)). Si no, el codi continua.
-[ ] 1.4.6: Genera el salt i calcula el hash de la contrasenya:
-[ ] 1.4.7: [Fase de guardar] Crida Prisma per fer l'INSERT real a PostgreSQL:
-[ ] 1.4.8: Esborra la contrasenya de l'objecte de memòria (delete newUser.password) abans de fer el return newUser per no enviar-la de tornada a internet.
+[x] 1.4.0: Crear ell PrismaService.
+[x] 1.4.1: Importa el PrismaService i RegisterDto al fitxer.
+[x] 1.4.2: Injecta el PrismaService al constructor de la classe AuthService perquè NestJS te'l doni connectat:
+[x] 1.4.3: Crea la funció asíncrona: async register(dto: RegisterDto).
+[x] 1.4.4: [Fase de consulta] Fes servir Prisma per buscar si el correu o l'usuari ja existeixen a la base de dades utilitzant this.prisma.user.findFirst.
+[x] 1.4.5: Si existeix, llança un error de conflicte (throw new ConflictException(...)). Si no, el codi continua.
+[x] 1.4.6: Genera el salt i calcula el hash de la contrasenya:
+[x] 1.4.7: [Fase de guardar] Crida Prisma per fer l'INSERT real a PostgreSQL:
+[x] 1.4.8: Esborra la contrasenya de l'objecte de memòria (delete newUser.password) abans de fer el return newUser per no enviar-la de tornada a internet.
 
 📞 Mòdul 1.5: Creació de la ruta HTTP (src/auth/auth.controller.ts)
 L'últim pas del backend: exposar un botó a internet perquè el Frontend el pugui prémer.
 
-[ ] 1.5.1: Obre src/auth/auth.controller.ts.
-[ ] 1.5.2: Assegura't que la classe té el decorador @Controller('auth').
-[ ] 1.5.3: Crea el mètode de tipus POST: @Post('register').
-[ ] 1.5.4: Digues-li que rebi el cos de la petició: async register(@Body() dto: RegisterDto).
-[ ] 1.5.5: Crida la funció del servei que has programat al mòdul anterior i retorna el seu resultat: return this.authService.register(dto);.
+[x] 1.5.1: Obre src/auth/auth.controller.ts.
+[x] 1.5.2: Assegura't que la classe té el decorador @Controller('auth').
+[x] 1.5.3: Crea el mètode de tipus POST: @Post('register').
+[x] 1.5.4: Digues-li que rebi el cos de la petició: async register(@Body() dto: RegisterDto).
+[x] 1.5.5: Crida la funció del servei que has programat al mòdul anterior i retorna el seu resultat: return this.authService.register(dto);.
 
 🔑 PAS 2: Login & JWT Tokens (Access + Refresh)
 L'objectiu d'aquest pas és validar qui diu ser l'usuari i donar-li dues claus: l'Access Token (per moure's) i el Refresh Token (per demanar un nou Access Token quan aquest caduqui).
