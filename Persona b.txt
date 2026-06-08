@@ -1,0 +1,6 @@
+user registration + login with hashed/salted passwrod.
+JWT Tokens, refresh, logic, protetec routed guars in NestJS
+Basic user profile endpoint (GET /users/:id, PUT/users/me)
+Avatar upload with default fallback
+OAuth 2.0 with 42 intra
+Frontend: login page, register page, proteced route wrapper in Next.js
